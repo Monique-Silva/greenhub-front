@@ -4,7 +4,7 @@
 <template>
   <main>
     <!--<TheWelcome />-->
-    <h1 class="mainPhrase">The easiest way to order your spirulina</h1>
+    <h1 class="mainPhrase">e aí</h1>
   </main>
 </template>
 
