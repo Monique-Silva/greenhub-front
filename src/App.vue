@@ -1,37 +1,37 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue';
+<script>
+import { RouterLink, RouterView } from 'vue-router'
+import HelloWorld from './components/HelloWorld.vue'
 import { Icon } from '@iconify/vue';
+
+export default {
+  data() {
+    return {};
+  },
+  methods: {
+    onProductClick() {
+    }
+  },
+  components: {
+    HelloWorld,
+    RouterLink,
+    RouterView
+  }
+}
 </script>
 
+
 <template>
+  <header>
+    <h1>test test</h1>
+    <HelloWorld msg="test" />
+    <div class="wrapper">
+      <nav>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/category" @click="onCategoryClick">Catégorie</RouterLink>
+        <RouterLink to="/product" @click="onProductClick">Product Details</RouterLink>
+      </nav>
+    </div>
+  </header>
 
+  <RouterView />
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>./components/HelloWorld.vue
