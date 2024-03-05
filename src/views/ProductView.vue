@@ -6,7 +6,7 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            products: [],
+            product: null,
             loading: false,
             error: null,
         }
@@ -32,8 +32,9 @@ export default {
     methods: {
         async fetchData() {
             try {
-                const response = await axios.get('https://fakestoreapi.com/products/1');
-                this.products = response.data
+                const response = await axios.get('https://fakestoreapi.com/products/${item.id}');
+                this.product = response.data
+                console.log(this.product)
             }
             catch (error) {
                 console.log(error)
@@ -49,10 +50,8 @@ export default {
 </script>
 
 <template>
-        <template >
+        <div>
             <Breadcrumb />
-        </template>
-        <template v-for="item in products" :key="item.id">
-            <ProductCard :item="item" />
-        </template>
+        </div>
+            <ProductCard :item="product" />
     </template>

@@ -18,7 +18,7 @@ const router = createRouter({
             component: CategoryView
         },
         {
-            path: '/product',
+            path: '/product/${item.id}',
             name: 'product',
             component: ProductView
         },
