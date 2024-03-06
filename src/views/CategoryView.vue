@@ -65,8 +65,8 @@ export default {
     </template>
     <div>
         <h1 class="products">Catégorie</h1>
-        <template v-for="item in products" :key="item.id">
+        <div v-for="item in products" :key="item.id">
             <ProductCard :item="item" />
-        </template>
+        </div>
     </div>
 </template>

@@ -23,14 +23,6 @@ export default {
 <template>
   <header>
     <Navbar />
-    <HelloWorld msg="test" />
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/category" @click="onCategoryClick">Catégorie</RouterLink>
-        <RouterLink to="/product/{id}" @click="onProductClick">Product</RouterLink>
-      </nav>
-    </div>
   </header>
 
   <RouterView />

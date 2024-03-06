@@ -28,11 +28,12 @@ export default {
     },
     created() {
         this.fetchData()
+        console.log(this.$route.params.itemId)
     },
     methods: {
         async fetchData() {
             try {
-                const response = await axios.get('https://fakestoreapi.com/products/${item.id}');
+                const response = await axios.get("https://fakestoreapi.com/products/"+this.$route.params.itemId);
                 this.product = response.data
                 console.log(this.product)
             }

@@ -1,14 +1,18 @@
 <script>
+import { RouterLink, RouterView } from 'vue-router'
 
 export default {
-    props: ["item"],
+  props: ["item"],
+  components: { 
+    RouterLink
+  },
 }
 
 </script>
 
 <template>
 <div v-if="item" class="card w-96 bg-base-100 shadow-xl">
-  <figure><img :src="item.image" alt="product image"></figure>
+  <RouterLink :to="'/product/'+item.id"><figure><img :src="item.image" alt="product image"></figure></RouterLink>
   <div class="card-body">
     <h3 class="card-title">{{ item.category }}</h3>
     <h2 class="card-title">{{ item.title }}</h2>
