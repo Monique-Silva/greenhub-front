@@ -28,7 +28,7 @@ export default {
     },
     created() {
         this.fetchData()
-        console.log(this.$route.params.itemId)
+        //console.log(this.$route.params.itemId)
     },
     methods: {
         async fetchData() {
@@ -53,6 +53,6 @@ export default {
 <template>
         <div>
             <Breadcrumb />
-        </div>
+        </div class="flex items-center justify-center">
             <ProductCard :item="product" />
     </template>

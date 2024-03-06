@@ -4,7 +4,6 @@ import HelloWorld from './components/HelloWorld.vue'
 import { Icon } from '@iconify/vue';
 import Navbar from './components/Navbar.vue'
 
-
 export default {
   data() {
     return {};

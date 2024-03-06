@@ -2,6 +2,7 @@
 import axios from 'axios'
 import ProductCard from '../components/ProductCard.vue'
 import Breadcrumb from '../components/Breadcrumb.vue'
+import { useFilterStore } from '../stores/FilterStore.js'
 
 export default {
     data() {
@@ -57,6 +58,7 @@ export default {
         Breadcrumb
     }
 }
+
 </script>
 
 <template>
