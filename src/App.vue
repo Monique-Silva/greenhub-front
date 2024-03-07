@@ -1,7 +1,5 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-import { Icon } from '@iconify/vue';
 import Navbar from './components/Navbar.vue'
 
 export default {
@@ -10,10 +8,9 @@ export default {
   },
 
   components: {
-    HelloWorld,
     RouterLink,
     RouterView,
-    Navbar
+    Navbar,
   }
 }
 </script>
@@ -23,6 +20,9 @@ export default {
   <header>
     <Navbar />
   </header>
-
+<main>
   <RouterView />
+</main>
+<footer>
+</footer>
 </template>

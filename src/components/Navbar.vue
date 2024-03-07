@@ -19,12 +19,7 @@ export default {
         HeartIcon,
     ShoppingCartIcon,
     Searchbar
-  },
-  setup() {
-    return {
-      navigation,
-    }
-  },
+  }
 }
 </script>
 <!-- This example requires Tailwind CSS v2.0+ -->
@@ -48,12 +43,11 @@ export default {
           <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4 text-yellow-50">
               <!---<a v-for="item in navigation" :key="item.name" :href="item.href" :class="[item.current ? 'bg-lime-950 text-yellow-50' : 'text-yellow-50 hover:bg-lime-950 hover:text-yellow-50', 'px-3 py-2 rounded-md text-sm font-medium']" :aria-current="item.current ? 'page' : undefined">{{ item.name }}</a>-->
-              <DisclosureButton as="a" href="/category" class="text-white px-3 py-2 rounded-md text-base font-medium">Épicerie</DisclosureButton>
-              <DisclosureButton as="a" href="/category" class="text-white px-3 py-2 rounded-md text-base font-medium">Santé</DisclosureButton>
-              <DisclosureButton as="a" href="/category" class="text-white px-3 py-2 rounded-md text-base font-medium">Maison</DisclosureButton>
-              <DisclosureButton as="a" href="/category" class="text-white px-3 py-2 rounded-md text-base font-medium">Beauté</DisclosureButton>
-              <DisclosureButton as="a" href="/category" class="text-white px-3 py-2 rounded-md text-base font-medium">Bébé</DisclosureButton>
-              <DisclosureButton as="a" href="/category" class="text-white px-3 py-2 rounded-md text-base font-medium">Services écologiques</DisclosureButton>
+              <DisclosureButton as="a" href="/allproducts" class="text-white px-3 py-2 rounded-md text-base font-medium">Tous les rayons</DisclosureButton>
+              <DisclosureButton as="a" href="/category/electronics" class="text-white px-3 py-2 rounded-md text-base font-medium">Electroniques</DisclosureButton>
+              <DisclosureButton as="a" href="/category/jewelery" class="text-white px-3 py-2 rounded-md text-base font-medium">Bijoux</DisclosureButton>
+              <DisclosureButton as="a" href="/category/men's clothing" class="text-white px-3 py-2 rounded-md text-base font-medium">Mode homme</DisclosureButton>
+              <DisclosureButton as="a" href="/category/women's clothing" class="text-white px-3 py-2 rounded-md text-base font-medium">Mode femme</DisclosureButton>
       </div>
           </div>
         </div>
@@ -96,47 +90,12 @@ export default {
 
     <DisclosurePanel class="sm:hidden sm:menu dropdown-content">
       <div class="px-2 pt-2 pb-3 space-y-1 sm:menu dropdown-content">
-        <DisclosureButton as="a" href="/category" class="text-white px-3 py-2 rounded-md text-base font-medium">Épicerie</DisclosureButton>
-        <DisclosureButton as="a" href="/category" class="text-white px-3 py-2 rounded-md text-base font-medium">Santé</DisclosureButton>
-        <DisclosureButton as="a" href="/category" class="text-white px-3 py-2 rounded-md text-base font-medium">Maison</DisclosureButton>
-        <DisclosureButton as="a" href="/category" class="text-white px-3 py-2 rounded-md text-base font-medium">Beauté</DisclosureButton>
-        <DisclosureButton as="a" href="/category" class="text-white px-3 py-2 rounded-md text-base font-medium">Bébé</DisclosureButton>
-        <DisclosureButton as="a" href="/category" class="text-white px-3 py-2 rounded-md text-base font-medium">Services écologiques</DisclosureButton>
-      
+        <DisclosureButton as="a" href="/allproducts" class="text-white px-3 py-2 rounded-md text-base font-medium">Tous les rayons</DisclosureButton>
+        <DisclosureButton as="a" href="/category/electronics" class="text-white px-3 py-2 rounded-md text-base font-medium">Electroniques</DisclosureButton>
+        <DisclosureButton as="a" href="/category/jewelery" class="text-white px-3 py-2 rounded-md text-base font-medium">Bijoux</DisclosureButton>
+        <DisclosureButton as="a" href="/category/men's clothing" class="text-white px-3 py-2 rounded-md text-base font-medium">Mode homme</DisclosureButton>
+        <DisclosureButton as="a" href="/category/women's clothing" class="text-white px-3 py-2 rounded-md text-base font-medium">Mode femme</DisclosureButton>
       </div>
     </DisclosurePanel>
   </Disclosure>
 </template>
-
-<!--<template>
-        <ul tabindex="0" class=" sm:menu dropdown-content z-[1] p-2 text-yellow-50 bg-lime-950 rounded-box w-52 mt-4">
-          <li>
-    <details open>
-      <summary>Épicerie</summary>
-      <ul>
-        <li><a>Produits sucrés</a></li>
-        <li><a>Produits salés</a></li>
-        <li><a>Boissons</a></li>
-      </ul>
-    </details>
-        <li><a>Santé</a></li>
-        <li><a>Bébé</a></li>
-  </li>
-  <ul>
-    <li>
-          <details open>
-            <summary>Maison</summary>
-            <ul>
-              <li><a>Produits menagers</a></li>
-              <li><a>Jardin</a></li>
-            </ul>
-          </details>
-        </li>
-        </ul>
-  <li><a>Commerce équitable</a></li>
-  <li><a>Services écologiques</a></li>
-        </ul>
-      </div>
-    
-</template>
--->

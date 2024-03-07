@@ -1,10 +1,16 @@
-<script setup>
+<script>
+import Hero from '@/components/Hero.vue';
+
+export default {
+  components: {
+    Hero
+  }
+}
 </script>
 
 <template>
   <main>
-    <!--<TheWelcome />-->
-    <h1 class="mainPhrase">e aí</h1>
+    <Hero />
   </main>
 </template>
 

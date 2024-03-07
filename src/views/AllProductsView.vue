@@ -1,16 +1,18 @@
 <script>
+import axios from 'axios'
 import ProductCard from '../components/ProductCard.vue'
 import Breadcrumb from '../components/Breadcrumb.vue'
 import { useProductStore } from '@/stores/product'
 
 export default {
-    data() { 
+    data() {
         return {
             store: useProductStore()
         }
     },
+
     created() {
-        this.store.fetchProductById(this.$route.params.itemId)
+        this.store.fetchAllProducts()
     },
 
     components: {
@@ -21,8 +23,13 @@ export default {
 </script>
 
 <template>
-        <div>
-            <Breadcrumb />
-        </div class="flex items-center justify-center">
-            <ProductCard :item="this.store.product" />
+    <template>
+        <Breadcrumb />
     </template>
+    <div>
+        <h1 class="products">Tous les produits</h1>
+        <div v-for="item in this.store.products" :key="item.id">
+            <ProductCard :item="item" />
+        </div>
+    </div>
+</template>

@@ -11,7 +11,7 @@ export default {
 </script>
 
 <template>
-<div v-if="item" class="card w-96 bg-base-100 shadow-xl">
+  <div v-if="item" class="card w-96 bg-base-100 shadow-xl">
   <RouterLink :to="'/product/'+item.id"><figure><img :src="item.image" alt="product image"></figure></RouterLink>
   <div class="card-body">
     <h3 class="card-title">{{ item.category }}</h3>
