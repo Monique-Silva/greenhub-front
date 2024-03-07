@@ -24,5 +24,5 @@ export default {
         <div>
             <Breadcrumb />
         </div class="flex items-center justify-center">
-            <ProductCard :item="this.store.product" />
+            <ProductCard :item="this.product" />
     </template>

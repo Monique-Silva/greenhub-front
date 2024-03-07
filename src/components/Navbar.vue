@@ -71,17 +71,17 @@ export default {
                   <a href="#" :class="[active ? 'bg-lime-950' : '', 'block px-4 py-2 text-sm text-yellow-50']">Mon profil</a>
                 </MenuItem>
                 <MenuItem v-slot="{ active }">
-                  <a href="#" :class="[active ? 'bg-lime-950' : '', 'block px-4 py-2 text-sm text-yellow-50']">Créer un compte</a>
+                  <a href="/inscription" :class="[active ? 'bg-lime-950' : '', 'block px-4 py-2 text-sm text-yellow-50']">Créer un compte</a>
                 </MenuItem>
                 <MenuItem v-slot="{ active }">
-                  <a href="#" :class="[active ? 'bg-lime-950' : '', 'block px-4 py-2 text-sm text-yellow-50']">Me déconnecter</a>
+                  <a href="/cart" :class="[active ? 'bg-lime-950' : '', 'block px-4 py-2 text-sm text-yellow-50']">Mon panier</a>
                 </MenuItem>
               </MenuItems>
             </transition>
           </Menu>
           <button type="button" class="bg-lime-950 p-1 rounded-full text-yellow-50 hover:text-yellow-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
             <span class="sr-only">View notifications</span>
-            <ShoppingCartIcon class="h-6 w-6" aria-hidden="true" />
+            <ShoppingCartIcon href="/cart" class="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
       </div>

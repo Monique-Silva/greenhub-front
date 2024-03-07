@@ -6,6 +6,7 @@ export const useProductStore = defineStore('product', {
         return {
             products: [],
             categories: [],
+            cart: [],
             product: null,
             loading: false,
             error: null
@@ -39,6 +40,16 @@ export const useProductStore = defineStore('product', {
             try {
                 const response = await axios.get("https://fakestoreapi.com/products/" + itemId);
                 this.product = response.data
+            }
+            catch (error) {
+                this.error = error
+            };
+        },
+
+        addProductToCart(product) {
+            try {
+                const response = await axios.get("https://fakestoreapi.com/products/" + itemId);
+                this.cart = + response.data;
             }
             catch (error) {
                 this.error = error
