@@ -64,7 +64,11 @@ export const useProductStore = defineStore('product', {
     getters: {
         //this function will add the product quantity in the shopping cart badge. At the moment it doens not work, because it will need to access the item.quantity with a loop (we can use the map method) to add to the cart. This still needs to be implemented at home.
         displayNumberOfProductsOnCart() {
-            return this.cart.length
+            let cartProductCount = null
+            cart.forEach(product => {
+                cartProductCount = + item.quantity
+            });
+            return this.cartProductCount
         }
     }
 })
