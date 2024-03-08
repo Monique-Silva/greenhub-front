@@ -21,9 +21,9 @@ export default {
   <header>
     <Navbar />
   </header>
-<main>
-  <RouterView />
-</main>
-<footer>
-</footer>
+  <main>
+    <RouterView />
+  </main>
+  <footer>
+  </footer>
 </template>

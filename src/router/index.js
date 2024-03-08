@@ -35,7 +35,7 @@ const router = createRouter({
         //    component: NewAccountView
         //},
         {
-            path: '/cart/:cart',
+            path: '/cart',
             name: 'cart',
             component: CartView
         }

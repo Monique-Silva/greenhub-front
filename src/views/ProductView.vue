@@ -4,7 +4,7 @@ import Breadcrumb from '../components/Breadcrumb.vue'
 import { useProductStore } from '@/stores/product'
 
 export default {
-    data() { 
+    data() {
         return {
             store: useProductStore()
         }
@@ -21,8 +21,8 @@ export default {
 </script>
 
 <template>
-        <div>
-            <Breadcrumb />
-        </div class="flex items-center justify-center">
-            <ProductCard :item="this.product" />
-    </template>
+    <div>
+        <Breadcrumb />
+    </div class="flex items-center justify-center">
+    <ProductCard :item="this.product" />
+</template>

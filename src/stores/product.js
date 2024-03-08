@@ -46,14 +46,23 @@ export const useProductStore = defineStore('product', {
             };
         },
 
-        addProductToCart(product) {
-            try {
-                const response = await axios.get("https://fakestoreapi.com/products/" + itemId);
-                this.cart = + response.data;
+        addProductToCart(item) {
+            if (this.item.id in this.cart) {
+                this.item.quantity = +1
+            } else {
+                this.cart.push(item)
+                this.item.quantity = 1
             }
-            catch (error) {
-                this.error = error
-            };
+            console.log(this.quantity)
         },
+
+        fetchCartProducts() {
+            return this.cart
+        }
     },
+    getters: {
+        displayCartLength() {
+            return this.cart.length
+        }
+    }
 })

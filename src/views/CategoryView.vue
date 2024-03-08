@@ -4,7 +4,7 @@ import Breadcrumb from '../components/Breadcrumb.vue'
 import { useProductStore } from '@/stores/product'
 
 export default {
-    data() { 
+    data() {
         return {
             store: useProductStore()
         }
