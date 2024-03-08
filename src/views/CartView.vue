@@ -26,7 +26,7 @@ export default {
     <div class="bg-gray-100 h-screen py-8">
         <div class="container mx-auto px-4">
             <h1 class="text-2xl font-semibold mb-4">Panier</h1>
-            <div class="flex sm:flex-col md:flex-row gap-4">
+            <div class="flex sm:flex-wrap md:flex-row gap-4">
                 <div class="md:w-3/4">
                     <div class="bg-white rounded-lg shadow-md p-6 mb-4">
                         <table class="w-full">
