@@ -17,7 +17,7 @@ export const useProductStore = defineStore('product', {
 
         async fetchAllProducts() {
             try {
-                const response = await axios.get('https://fakestoreapi.com/products');
+                const response = await axios.get('http://localhost:8000/api/products');
                 this.products = response.data
             }
             catch (error) {
@@ -27,7 +27,7 @@ export const useProductStore = defineStore('product', {
 
         async fetchProductsByCategory(category) {
             try {
-                const response = await axios.get("https://fakestoreapi.com/products/category/" + category);
+                const response = await axios.get("http://localhost:8000/api/products/categories");
                 this.products = response.data
                 //console.log(this.products)
             }
@@ -38,7 +38,7 @@ export const useProductStore = defineStore('product', {
 
         async fetchProductById(itemId) {
             try {
-                const response = await axios.get("https://fakestoreapi.com/products/" + itemId);
+                const response = await axios.get("http://localhost:8000/api/products/" + itemId);
                 this.product = response.data
             }
             catch (error) {
@@ -61,6 +61,7 @@ export const useProductStore = defineStore('product', {
             return this.cart
         }
     },
+    /*
     getters: {
         //this function will add the product quantity in the shopping cart badge. At the moment it doens not work, because it will need to access the item.quantity with a loop (we can use the map method) to add to the cart. This still needs to be implemented at home.
         displayNumberOfProductsOnCart() {
@@ -71,4 +72,5 @@ export const useProductStore = defineStore('product', {
             return this.cartProductCount
         }
     }
+    */
 })
