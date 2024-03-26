@@ -10,7 +10,8 @@ export default {
         }
     },
     created() {
-        this.store.fetchProductsByCategory(this.$route.params.category)
+        //this.store.fetchProductsByCategory(this.$route.params.category)
+        this.store.fetchProductsByCategory(this.$route.params.categoryName)
     },
 
     components: {

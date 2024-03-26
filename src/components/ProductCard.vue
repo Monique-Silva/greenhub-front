@@ -24,7 +24,7 @@ export default {
     </RouterLink>
     <div class="card-body">
       <h3 class="card-title">{{ item.category }}</h3>
-      <h2 class="card-title">{{ item.title }}</h2>
+      <h2 class="card-title">{{ item.name }}</h2>
       <p>{{ item.description }}</p>
       <div class="card-actions justify-end">
         <h1>{{ item.price }}</h1>

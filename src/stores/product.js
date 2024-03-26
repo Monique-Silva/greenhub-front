@@ -25,9 +25,10 @@ export const useProductStore = defineStore('product', {
             };
         },
 
-        async fetchProductsByCategory(category) {
+        async fetchProductsByCategory(categoryName) {
+    
             try {
-                const response = await axios.get("http://localhost:8000/api/products/categories");
+                const response = await axios.get("http://localhost:8000/api/products/categories/" + categoryName);
                 this.products = response.data
                 //console.log(this.products)
             }
@@ -40,6 +41,7 @@ export const useProductStore = defineStore('product', {
             try {
                 const response = await axios.get("http://localhost:8000/api/products/" + itemId);
                 this.product = response.data
+                console.log(this.product)
             }
             catch (error) {
                 this.error = error

@@ -21,7 +21,7 @@ export default {
             <figure><img :src="item.image" alt="product image"></figure>
         </RouterLink>
         <div class="card-body">
-            <h3 class="card-title">{{ item.title }}</h3>
+            <h3 class="card-title">{{ item.name }}</h3>
             <h2 class="card-title">{{ item.category }}</h2>
             <div class="card-actions justify-start">
                 <div class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
