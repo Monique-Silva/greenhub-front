@@ -93,7 +93,7 @@ export default {
                   profil</a>
                 </MenuItem>
                 <MenuItem v-slot="{ active }">
-                <a href="/inscription"
+                <a href="/register"
                   :class="[active ? 'bg-lime-950' : '', 'block px-4 py-2 text-sm text-yellow-50']">Créer un compte</a>
                 </MenuItem>
                 <MenuItem v-slot="{ active }">
