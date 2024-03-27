@@ -97,8 +97,8 @@ export default {
                   :class="[active ? 'bg-lime-950' : '', 'block px-4 py-2 text-sm text-yellow-50']">Créer un compte</a>
                 </MenuItem>
                 <MenuItem v-slot="{ active }">
-                <a href="/cart" :class="[active ? 'bg-lime-950' : '', 'block px-4 py-2 text-sm text-yellow-50']">Mon
-                  panier</a>
+                <a href="/login" :class="[active ? 'bg-lime-950' : '', 'block px-4 py-2 text-sm text-yellow-50']">Me
+                  connecter</a>
                 </MenuItem>
               </MenuItems>
             </transition>
