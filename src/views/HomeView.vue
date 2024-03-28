@@ -10,6 +10,9 @@ export default {
 
 <template>
   <main>
+    <br>
+    <p class="flex justify-center"> Bienvenue {{ userName }}</p>
+    <br>
     <Hero />
   </main>
 </template>

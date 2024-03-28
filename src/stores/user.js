@@ -4,7 +4,7 @@ import axios from 'axios';
 export const useUserStore = defineStore('user', {
     state: () => {
         return {
-            user: null,
+            user: '',
             userName: '',
             firstName: '',
             lastName: '',
@@ -32,15 +32,14 @@ export const useUserStore = defineStore('user', {
             };
         },
 
-        async login(email, password) {
+        login() {
             try {
-                const csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
-                await axios.post('http://localhost:8000/login', { email: email.value, password: password.value }, {
-                    headers: {
-                        'X-CSRF-TOKEN': csrfToken
-                    }
+                axios.get('/sanctum/csrf-cookie').then(response => {
+                    axios.post('http://localhost:8000/login', { email: this.email, password: this.password })
+                    console.log('hey')
                 });
-            } catch (error) {
+            }
+            catch (error) {
                 console.log(error);
             }
         },

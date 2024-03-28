@@ -135,6 +135,6 @@ export default {
         <DisclosureButton as="a" href="/category/women's clothing"
           class="text-white px-3 py-2 rounded-md text-base font-medium">Mode femme</DisclosureButton>
       </div>
-    </DisclosurePanel>
+      </DisclosurePanel>
   </Disclosure>
 </template>
