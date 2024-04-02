@@ -1,7 +1,17 @@
 <script>
-import Hero from '@/components/Hero.vue';
+import Hero from '@/components/Hero.vue'
+import { useUserStore } from '@/stores/user'
+
 
 export default {
+  data() {
+    return {
+      userStore: useUserStore(),
+    }
+  },
+
+  props: ["item"],
+
   components: {
     Hero
   }
@@ -10,9 +20,6 @@ export default {
 
 <template>
   <main>
-    <br>
-    <p class="flex justify-center"> Bienvenue {{ userName }}</p>
-    <br>
     <Hero />
   </main>
 </template>

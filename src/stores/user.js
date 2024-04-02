@@ -4,7 +4,7 @@ import axios from 'axios';
 export const useUserStore = defineStore('user', {
     state: () => {
         return {
-            user: '',
+            user: null,
             userName: '',
             firstName: '',
             lastName: '',
@@ -17,6 +17,7 @@ export const useUserStore = defineStore('user', {
             rememberToken: '',
             companyId: '',
             imageId: '',
+            isloggedIn: false,
         }
     },
 
@@ -24,7 +25,7 @@ export const useUserStore = defineStore('user', {
 
         async fetchUser() {
             try {
-                const response = await axios.get('http://localhost:8000/user');
+                const response = await axios.get('http://localhost:8000/api/dashboard');
                 this.user = response.data
             }
             catch (error) {
@@ -32,16 +33,16 @@ export const useUserStore = defineStore('user', {
             };
         },
 
-        login() {
+        async login() {
             try {
-                axios.get('/sanctum/csrf-cookie').then(response => {
-                    axios.post('http://localhost:8000/login', { email: this.email, password: this.password })
-                    console.log('hey')
-                });
+                axios.get('/sanctum/csrf-cookie')
+                await axios.post('http://localhost:8000/login', { email: this.email, password: this.password })
+                this.isloggedIn = true;
+                await this.$router.push({ name: 'home' });
             }
             catch (error) {
-                console.log(error);
-            }
+                console.log(error)
+            };
         },
 
         async registerNewUser() {
