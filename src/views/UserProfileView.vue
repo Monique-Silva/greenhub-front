@@ -4,16 +4,26 @@ import { useUserStore } from '@/stores/user'
 
 export default {
     data() {
+        // Référence au store Pinia
+        const userStore = useUserStore();
         return {
-            store: useUserStore()
+            userStore
+        }
+    },
+    computed: {
+        user() {
+            // Utilisez la référence stockée dans data
+            this.userStore = useUserStore();
+            return this.userStore.user;
         }
     },
 
+
     created() {
-        this.store.fetchUser()
+        this.userStore = useUserStore();
+        this.userStore.fetchUser();
     },
 
-    props: ["item"],
     components: {
         Breadcrumb
     }
@@ -25,13 +35,13 @@ export default {
     <div>
         <Breadcrumb />
     </div>
-    <div v-if="item" class="card w-96 bg-base-100 shadow-xl">
-        <p class="flex justify-center"> Bienvenue {{ item.userName }}</p>
-        <figure><img :src="item.imageId" alt="user avatar"></figure>
+    <div v-if="user" class="card w-96 bg-base-100 shadow-xl">
+        <p class="flex justify-center"> Bienvenue {{ this.user.user_name }}</p>
+        <figure><img :src="this.user.image_id" alt="user avatar"></figure>
         <div class="card-body">
-            <h3 class="card-title">{{ item.firstName }}</h3>
-            <h2 class="card-title">{{ item.lastName }}</h2>
-            <p>{{ item.email }}</p>
+            <h3 class="card-title">{{ this.user.first_name }}</h3>
+            <h2 class="card-title">{{ this.user.last_name }}</h2>
+            <p>{{ this.user.email }}</p>
         </div>
     </div>
 </template>

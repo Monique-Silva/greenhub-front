@@ -1,5 +1,4 @@
 <script>
-import axios from 'axios'
 import ProductCard from '../components/ProductCard.vue'
 import Breadcrumb from '../components/Breadcrumb.vue'
 import { useProductStore } from '@/stores/product'

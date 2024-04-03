@@ -7,11 +7,26 @@ import { useUserStore } from '@/stores/user'
 
 export default {
   data() {
+    const userStore = useUserStore();
+    const productStore = useProductStore();
     return {
-      productStore: useProductStore(),
-      userStore: useUserStore(),
-
+      userStore,
+      productStore
     }
+  },
+
+  computed: {
+    user() {
+      // Utilisez la référence stockée dans data
+      this.userStore = useUserStore();
+      return this.userStore.user;
+    }
+  },
+
+
+  created() {
+    this.userStore = useUserStore();
+    this.userStore.fetchUser();
   },
 
   components: {
@@ -66,7 +81,8 @@ export default {
               <DisclosureButton as="a" href="/category/men's clothing"
                 class="text-white px-3 py-2 rounded-md text-base font-medium">Mode homme</DisclosureButton>
               <DisclosureButton as="a" href="/category/women's clothing"
-                class="text-white px-3 py-2 rounded-md text-base font-medium">Mode femme</DisclosureButton>
+                class="text-white px-3 py-2 rounded-md text-base font-medium">Mode femme
+              </DisclosureButton>
             </div>
           </div>
         </div>
@@ -91,21 +107,20 @@ export default {
               leave-to-class="transform opacity-0 scale-95">
               <MenuItems
                 class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-lime-950 ring-1 ring-black ring-opacity-5 focus:outline-none">
-                <MenuItem v-slot="{ active }">
-                <a href="/dashboard"
-                  :class="[active ? 'bg-lime-950' : '', 'block px-4 py-2 text-sm text-yellow-50']">Mon
+                <MenuItem v-show="this.userStore.is_logged_in" v-slot="{ active }">
+                <a href="/user" :class="[active ? 'bg-lime-950' : '', 'block px-4 py-2 text-sm text-yellow-50']">Mon
                   profil</a>
                 </MenuItem>
-                <MenuItem v-slot="{ active }">
+                <MenuItem v-show="!this.userStore.is_logged_in" v-slot="{ active }">
                 <a href="/register"
                   :class="[active ? 'bg-lime-950' : '', 'block px-4 py-2 text-sm text-yellow-50']">Créer un compte</a>
                 </MenuItem>
-                <MenuItem v-if="!userStore.isloggedIn" v-slot="{ active }">
+                <MenuItem v-show="!this.userStore.is_logged_in" v-slot="{ active }">
                 <a href="/login" :class="[active ? 'bg-lime-950' : '', 'block px-4 py-2 text-sm text-yellow-50']">Me
                   connecter</a>
                 </MenuItem>
-                <MenuItem v-else v-slot="{ active }">
-                <a href="/" v-on:click.prevent="userStore.logout"
+                <MenuItem v-show="this.userStore.is_logged_in" v-slot="{ active }">
+                <a href="/logout" @click="this.userStore.logout"
                   :class="[active ? 'bg-lime-950' : '', 'block px-4 py-2 text-sm text-yellow-50']">Me
                   déconnecter</a>
                 </MenuItem>

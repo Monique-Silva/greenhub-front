@@ -1,23 +1,25 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
+import router from '@/router'
+
 
 export const useUserStore = defineStore('user', {
     state: () => {
         return {
             user: null,
-            userName: '',
-            firstName: '',
-            lastName: '',
+            user_name: '',
+            first_name: '',
+            last_name: '',
             email: '',
             password: '',
-            passwordConfirmation: '',
+            password_confirmation: '',
             loading: false,
             error: null,
             role: 'client',
-            rememberToken: '',
-            companyId: '',
-            imageId: '',
-            isloggedIn: false,
+            remember_token: '',
+            company_id: '',
+            image_id: '',
+            is_logged_in: null,
         }
     },
 
@@ -25,8 +27,9 @@ export const useUserStore = defineStore('user', {
 
         async fetchUser() {
             try {
-                const response = await axios.get('http://localhost:8000/api/dashboard');
+                const response = await axios.get("http://localhost:8000/api/user");
                 this.user = response.data
+                this.is_logged_in = true;
             }
             catch (error) {
                 console.log(error)
@@ -35,10 +38,26 @@ export const useUserStore = defineStore('user', {
 
         async login() {
             try {
-                axios.get('/sanctum/csrf-cookie')
-                await axios.post('http://localhost:8000/login', { email: this.email, password: this.password })
-                this.isloggedIn = true;
-                await this.$router.push({ name: 'home' });
+                axios.get('/sanctum/csrf-cookie');
+                const response = await axios.post('http://localhost:8000/login', { email: this.email, password: this.password });
+                this.user = response.data
+                this.is_logged_in = true;
+
+                //localStorage.setItem('email', email);
+                //localStorage.setItem('password', password);
+
+                router.push({ path: '/user' });
+            }
+            catch (error) {
+                console.log(error)
+            };
+        },
+
+        async logout() {
+            try {
+                await axios.post('http://localhost:8000/logout');
+                this.is_logged_in = false;
+                router.push({ path: '/' });
             }
             catch (error) {
                 console.log(error)
@@ -49,12 +68,12 @@ export const useUserStore = defineStore('user', {
             try {
                 const csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
                 await axios.post('http://localhost:8000/register', {
-                    user_name: this.userName,
-                    first_name: this.firstName,
+                    user_name: this.user_name,
+                    first_name: this.first_name,
                     last_name: this.last_name,
                     email: this.email,
                     password: this.password,
-                    password_confirmation: this.passwordConfirmation,
+                    password_confirmation: this.password_confirmation,
                     role: this.role
                 }, {
                     headers: {

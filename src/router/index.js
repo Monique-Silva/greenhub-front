@@ -8,6 +8,7 @@ import CartView from '@/views/CartView.vue'
 import LoginView from '@/views/LoginView.vue'
 import NewUserView from '@/views/NewUserView.vue'
 import UserProfileView from '@/views/UserProfileView.vue'
+import LogoutView from '@/views/LogoutView.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -48,7 +49,12 @@ const router = createRouter({
             component: LoginView
         },
         {
-            path: '/dashboard',
+            path: '/logout',
+            name: 'logout',
+            component: LogoutView
+        },
+        {
+            path: '/user',
             name: 'userProfile',
             component: UserProfileView
         },
