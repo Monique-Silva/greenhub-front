@@ -10,6 +10,7 @@ export default {
             userStore
         }
     },
+    
     computed: {
         user() {
             // Utilisez la référence stockée dans data

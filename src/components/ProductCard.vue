@@ -1,15 +1,19 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
 import { useProductStore } from '@/stores/product';
+import { useCartStore } from '@/stores/cart';
 
 export default {
   data() {
     return {
-      store: useProductStore()
+      productstore: useProductStore(),
+      cartStore: useCartStore(),
+
     }
   },
 
   props: ["item"],
+
   components: {
     RouterLink
   },
@@ -28,7 +32,7 @@ export default {
       <p>{{ item.description }}</p>
       <div class="card-actions justify-end">
         <h1>{{ item.price }}</h1>
-        <button @click="store.addProductToCart(item)" class="btn btn-primary">AJOUTER</button>
+        <button @click="cartStore.addProductToCart(item)" class="btn btn-primary">AJOUTER</button>
       </div>
     </div>
   </div>

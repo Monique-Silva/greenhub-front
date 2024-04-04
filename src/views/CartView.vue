@@ -1,17 +1,30 @@
 <script>
 import Breadcrumb from '../components/Breadcrumb.vue'
-import { useProductStore } from '@/stores/product'
+import { useCartStore } from '@/stores/cart'
 import ShoppingCartProduct from '../components/ShoppingCartProduct.vue'
+
 
 export default {
     data() {
+        // Référence au store Pinia
+        const cartStore = useCartStore();
         return {
-            store: useProductStore()
+            cartStore
+        }
+    },
+    computed: {
+        cart() {
+            // Utilisez la référence stockée dans data
+            this.cartStore = useCartStore();
+            return this.cartStore.cart;
         }
     },
     created() {
-        this.store.fetchCartProducts()
+        this.cartStore = useCartStore();
+        this.cartStore.fetchCartProducts();
     },
+
+    props: ["item"],
 
     components: {
         ShoppingCartProduct,
@@ -32,7 +45,7 @@ export default {
                         <table class="w-full">
                             <div class="flex items-center justify-center flex flex-row">
                             </div>
-                            <div v-for="item in this.store.cart" :key="item.id">
+                            <div v-for="item in this.cartStore.cart" :key="item.id">
                                 <ShoppingCartProduct :item="item" />
                             </div>
                         </table>
@@ -43,20 +56,20 @@ export default {
                         <h2 class="text-lg font-semibold mb-4">Recapitulatif</h2>
                         <div class="flex justify-between mb-2">
                             <span>Subtotal</span>
-                            <span>300 €</span>
+                            <span>função de soma total sem impostos €</span>
                         </div>
                         <div class="flex justify-between mb-2">
                             <span>TTC</span>
-                            <span>1,99 €</span>
+                            <span> impostos claculados em porcentagem €</span>
                         </div>
                         <div class="flex justify-between mb-2">
                             <span>Livraison</span>
-                            <span>0,00 €</span>
+                            <span>prix livraison €</span>
                         </div>
                         <hr class="my-2">
                         <div class="flex justify-between mb-2">
                             <span class="font-semibold">Total</span>
-                            <span class="font-semibold">3,49 €</span>
+                            <span class="font-semibold">função de soma total com impostos €</span>
                         </div>
                         <button class="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full">Acheter</button>
                     </div>

@@ -43,9 +43,6 @@ export const useUserStore = defineStore('user', {
                 this.user = response.data
                 this.is_logged_in = true;
 
-                //localStorage.setItem('email', email);
-                //localStorage.setItem('password', password);
-
                 router.push({ path: '/user' });
             }
             catch (error) {
