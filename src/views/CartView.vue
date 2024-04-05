@@ -6,25 +6,15 @@ import ShoppingCartProduct from '../components/ShoppingCartProduct.vue'
 
 export default {
     data() {
-        // Référence au store Pinia
-        const cartStore = useCartStore();
         return {
-            cartStore
+            cartStore: useCartStore()
         }
-    },
-    computed: {
-        cart() {
-            // Utilisez la référence stockée dans data
-            this.cartStore = useCartStore();
-            return this.cartStore.cart;
-        }
-    },
-    created() {
-        this.cartStore = useCartStore();
-        this.cartStore.fetchCartProducts();
     },
 
-    props: ["item"],
+    mounted() {
+        this.cartStore.loadCart()
+        this.cartStore.fetchCartProducts()
+    },
 
     components: {
         ShoppingCartProduct,

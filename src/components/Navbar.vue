@@ -107,7 +107,8 @@ export default {
             <div>
               <MenuButton class="bg-lime-950 flex text-sm focus:outline-none">
                 <span class="sr-only">Open user menu</span>
-                <UserIcon class="h-6 w-6 text-yellow-50" aria-hidden="true" />
+                <UserIcon class="h-6 w-6 text-yellow-50" aria-hidden="true" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" mt-3 />
               </MenuButton>
             </div>
             <transition enter-active-class="transition ease-out duration-100"

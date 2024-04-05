@@ -32,7 +32,7 @@ export default {
       <p>{{ item.description }}</p>
       <div class="card-actions justify-end">
         <h1>{{ item.price }}</h1>
-        <button @click="cartStore.addProductToCart(item)" class="btn btn-primary">AJOUTER</button>
+        <button @click="this.cartStore.addProductToCart(item)" class="btn btn-primary">AJOUTER</button>
       </div>
     </div>
   </div>

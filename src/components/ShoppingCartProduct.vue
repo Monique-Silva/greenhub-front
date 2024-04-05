@@ -1,18 +1,25 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
 import { useProductStore } from '@/stores/product';
+import { useCartStore } from '@/stores/cart';
 
 export default {
     data() {
         return {
-            store: useProductStore()
+            productstore: useProductStore(),
+            cartStore: useCartStore(),
+
         }
     },
+
     props: ["item"],
+
+    components: {
+        RouterLink
+    },
 }
 
 </script>
-
 
 <template>
 
