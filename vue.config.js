@@ -1,5 +1,7 @@
 module.exports = {
+    assetsDir: 'assets',
+
     devServer: {
-        proxy: 'http://localhost:5173',
+        proxy: 'http://localhost:5174',
     }
 }

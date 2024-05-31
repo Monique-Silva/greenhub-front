@@ -61,7 +61,7 @@ export default {
                             <span class="font-semibold">Total</span>
                             <span class="font-semibold">função de soma total com impostos €</span>
                         </div>
-                        <button class="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full">Acheter</button>
+                        <button class="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full">Commander</button>
                     </div>
                 </div>
             </div>

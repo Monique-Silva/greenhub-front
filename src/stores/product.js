@@ -17,7 +17,7 @@ export const useProductStore = defineStore('product', {
 
         async fetchAllProducts() {
             try {
-                const response = await axios.get('http://localhost:8000/api/products');
+                const response = await axios.get("http://localhost:8000/products");
                 this.products = response.data
             }
             catch (error) {
@@ -28,7 +28,7 @@ export const useProductStore = defineStore('product', {
         async fetchProductsByCategory(categoryName) {
 
             try {
-                const response = await axios.get("http://localhost:8000/api/products/categories/" + categoryName);
+                const response = await axios.get("http://localhost:8000/products/categories/" + categoryName);
                 this.products = response.data
                 //console.log(this.products)
             }
@@ -39,7 +39,7 @@ export const useProductStore = defineStore('product', {
 
         async fetchProductById(itemId) {
             try {
-                const response = await axios.get("http://localhost:8000/api/products/" + itemId);
+                const response = await axios.get("http://localhost:8000/products/" + itemId);
                 this.product = response.data
                 console.log(this.product)
             }
