@@ -80,7 +80,6 @@ export default {
           </div>
           <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4 text-yellow-50">
-              <!---<a v-for="item in navigation" :key="item.name" :href="item.href" :class="[item.current ? 'bg-lime-950 text-yellow-50' : 'text-yellow-50 hover:bg-lime-950 hover:text-yellow-50', 'px-3 py-2 rounded-md text-sm font-medium']" :aria-current="item.current ? 'page' : undefined">{{ item.name }}</a>-->
               <DisclosureButton as="a" href="/allproducts"
                 class="text-white px-3 py-2 rounded-md text-base font-medium">Tous les rayons</DisclosureButton>
               <DisclosureButton as="a" href="/category/electronics"
@@ -143,13 +142,9 @@ export default {
               <RouterLink to="/cart">
                 <ShoppingCartIcon class="h-6 w-6" aria-hidden="true" fill="none" viewBox="0 0 24 24"
                   stroke="currentColor" mt-3 />
+                <span class="badge badge-sm indicator-item">{{ cartStore.cartProductCount }}</span>
               </RouterLink>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-              <span class="badge badge-sm indicator-item">{{ this.cartStore.quantity }}</span>
             </div>
-
-
           </button>
         </div>
       </div>
@@ -158,17 +153,27 @@ export default {
 
     <DisclosurePanel class="sm:hidden sm:menu dropdown-content">
       <div class="px-2 pt-2 pb-3 space-y-1 sm:menu dropdown-content">
-        <DisclosureButton as="a" href="/allproducts" class="text-white px-3 py-2 rounded-md text-base font-medium">Tous
+        <div class="sm:menu-burger-box">
+        <DisclosureButton as="a" href="/allproducts" class="text-white px-3 py-4 rounded-md text-base font- sm:menu-burger-list">Tous
           les rayons</DisclosureButton>
-        <DisclosureButton as="a" href="/category/electronics"
+        </div>
+      <div>
+          <DisclosureButton as="a" href="/category/electronics"
           class="text-white px-3 py-2 rounded-md text-base font-medium">Electroniques</DisclosureButton>
-        <DisclosureButton as="a" href="/category/jewelery"
+        </div>
+      <div>
+          <DisclosureButton as="a" href="/category/jewelery"
           class="text-white px-3 py-2 rounded-md text-base font-medium">Bijoux</DisclosureButton>
-        <DisclosureButton as="a" href="/category/men's clothing"
+        </div>
+      <div>
+          <DisclosureButton as="a" href="/category/men's clothing"
           class="text-white px-3 py-2 rounded-md text-base font-medium">Mode homme</DisclosureButton>
-        <DisclosureButton as="a" href="/category/women's clothing"
+        </div>
+      <div>
+          <DisclosureButton as="a" href="/category/women's clothing"
           class="text-white px-3 py-2 rounded-md text-base font-medium">Mode femme</DisclosureButton>
-      </div>
+        </div>
+        </div>
     </DisclosurePanel>
   </Disclosure>
 </template>

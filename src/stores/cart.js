@@ -1,60 +1,91 @@
 import { defineStore } from 'pinia';
-import axios from 'axios';
+import router from '@/router';
+
+// Utility function to round numbers to 2 decimal places
+const roundToTwoDecimals = (num) => {
+    return Math.round(num * 100) / 100;
+};
 
 export const useCartStore = defineStore('cart', {
     state: () => ({
-        cart: [],
-        products: [],
-        product: null,
-        quantity: 0,
-        cartProductCount: 0,
-        loading: false,
-        error: null,
-        cartStorage: null,
+        cart: JSON.parse(localStorage.getItem('cart')) || [],
+        taxRate: 0.20, // Example tax rate of 20%
+        deliveryPrice: 5.00, // Example delivery price
     }),
 
     actions: {
-        /*loadCart() {
-            if (!localStorage.getItem('cart')) {
-                this.cart = []
-            } else {
-                this.cart = JSON.parse(localStorage.getItem('cart'))
-            }
-        },*/
-
-        //the function addProductToCart has a map function with product as parameter: it will check if the parameter id matches the item id. if true, it will stock the result in the variable, if false, it will call it null.
-        //if the result variable length is true (meaning there's an object in the array result and the product added to cart is already in the cart), the quantity will raise +1. Otherwise, the quantity will be 1 and the item will be added to the array cart with the push function.
-
         addProductToCart(item) {
-            let result = this.cart.filter((product) => product.id === item.id)
-            console.log(result);
-            if (result.length > 0) {
-                this.cart.find((product) => product.id === item.id).quantity += 1;
-                //localStorage.setItem('quantity', item.quantity)
-                //localStorage.setItem('product', item)
+            let product = this.cart.find(product => product.id === item.id);
+            if (product) {
+                product.quantity += 1;
             } else {
-                item.quantity = 1
-                //localStorage.setItem('quantity', item.quantity)
-                this.cart.push(item)
+                item.quantity = 1;
+                this.cart.push(item);
             }
-
+            this.saveCartToLocalStorage();
         },
 
-        fetchCartProducts() {
+        incrementProductQuantity(itemId) {
+            let product = this.cart.find(product => product.id === itemId);
+            if (product) {
+                product.quantity += 1;
+                this.saveCartToLocalStorage();
+            }
+        },
 
-            return this.cart
-        }
+        decrementProductQuantity(itemId) {
+            let product = this.cart.find(product => product.id === itemId);
+            if (product && product.quantity > 1) {
+                product.quantity -= 1;
+            } else {
+                this.cart = this.cart.filter(product => product.id !== itemId);
+            }
+            this.saveCartToLocalStorage();
+        },
+
+        removeProductFromCart(itemId) {
+            this.cart = this.cart.filter(product => product.id !== itemId);
+            this.saveCartToLocalStorage();
+        },
+
+        saveCartToLocalStorage() {
+            localStorage.setItem('cart', JSON.stringify(this.cart));
+        },
+
+        loadCartFromLocalStorage() {
+            this.cart = JSON.parse(localStorage.getItem('cart')) || [];
+        },
+
+        clearLocalStorage() {
+            localStorage.removeItem('cart'); // Remove cart data from local storage
+        },
+
+        clearCart() {
+            this.cart = [];
+            this.saveCartToLocalStorage();
+            this.clearLocalStorage();
+            router.push({ path: '/cart' });
+        },
     },
 
     getters: {
-        //this function will add the product quantity in the shopping cart badge. At the moment it doens not work, because it will need to access the item.quantity with a loop (we can use the map method) to add to the cart. This still needs to be implemented at home.
-        displayNumberOfProductsOnCart() {
-            let cartProductCount = null;
-            this.cart.forEach(product => {
-                cartProductCount = + item.quantity
-            });
-            return cartProductCount;
+        cartProductCount(state) {
+            return state.cart.reduce((acc, product) => acc + product.quantity, 0);
+        },
+
+        cartSubtotal(state) {
+            const subtotal = state.cart.reduce((acc, product) => acc + (product.price * product.quantity), 0);
+            return roundToTwoDecimals(subtotal);
+        },
+
+        cartTaxes(state) {
+            const taxes = state.cartSubtotal * state.taxRate;
+            return roundToTwoDecimals(taxes);
+        },
+
+        cartTotal(state) {
+            const total = state.cartSubtotal + state.cartTaxes + state.deliveryPrice;
+            return roundToTwoDecimals(total);
         }
     }
-
-})
+});

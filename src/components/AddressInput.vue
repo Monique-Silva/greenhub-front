@@ -28,14 +28,12 @@ export default {
 };
 </script>
 
-
 <template>
   <div>
     <input type="text" v-model="query" @input="fetchSuggestions" placeholder="Entrez votre adresse" />
     <ul v-if="suggestions.length">
       <li v-for="suggestion in suggestions" :key="suggestion.id" @click="selectSuggestion(suggestion)">
-        {{ suggestion.number }}, {{ suggestion.road }}, {{ suggestion.city }}, {{ suggestion.postalCode }}, {{
-          suggestion.country }}
+        {{ suggestion.number }}, {{ suggestion.road }}, {{ suggestion.city }}, {{ suggestion.postalCode }}, {{ suggestion.country }}
       </li>
     </ul>
   </div>

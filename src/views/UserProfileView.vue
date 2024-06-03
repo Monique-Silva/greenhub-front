@@ -43,6 +43,9 @@ export default {
             <h3 class="card-title">{{ this.user.first_name }}</h3>
             <h2 class="card-title">{{ this.user.last_name }}</h2>
             <p>{{ this.user.email }}</p>
+            <router-link to="/allproducts" class="bg-primary text-white text-center font-bold py-2 px-4 rounded-lg mt-4 w-full">
+                        Commencer mes achats
+                    </router-link>
         </div>
     </div>
 </template>
