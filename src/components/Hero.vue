@@ -5,7 +5,7 @@
     <div class="max-w-md">
       <h1 class="hero-text">Des nouveaux produits sont arrivés !</h1>
       <p class="mb-5"></p>
-      <button class="btn btn-primary">J'en veux ! </button>
+      <button class="btn btn-primary text-white">J'en veux ! </button>
     </div>
   </div>
 </div>

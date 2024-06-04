@@ -117,13 +117,14 @@ export const useUserStore = defineStore('user', {
                 console.log('Utilisateur enregistré:', response.data);
                 this.user = response.data;
                 this.is_logged_in = true;
+
                 router.push({ path: '/user' });
             }
             catch (error) {
                 if (error.response && error.response.status === 422) {
                     console.error('Erreur de validation:', error.response.data.errors);
                 } else {
-                    console.error('Erreur lors de l\'enregistrement:', error);
+                    console.error('Erreur lors de l\'enregistrement Laravel:', error);
                 }
             };
         },

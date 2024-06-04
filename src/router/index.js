@@ -9,6 +9,7 @@ import LoginView from '@/views/LoginView.vue'
 import NewUserView from '@/views/NewUserView.vue'
 import UserProfileView from '@/views/UserProfileView.vue'
 import LogoutView from '@/views/LogoutView.vue'
+import OrderView from '@/views/OrderView.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -57,6 +58,11 @@ const router = createRouter({
             path: '/user',
             name: 'userProfile',
             component: UserProfileView
+        },
+        {
+            path: '/order',
+            name: 'order',
+            component: OrderView
         },
     ]
 })

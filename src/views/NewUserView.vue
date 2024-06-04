@@ -1,8 +1,17 @@
 <script>
 import { useUserStore } from '@/stores/user';
 import AddressInput from '@/components/AddressInput.vue';
+import { useCartStore } from '@/stores/cart';
 
 export default {
+  data() {
+    // Référence au store Pinia
+    const cartStore = useCartStore();
+    return {
+      cartStore
+    }
+  },
+
   components: {
     AddressInput,
   },
