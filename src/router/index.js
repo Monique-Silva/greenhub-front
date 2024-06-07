@@ -10,6 +10,7 @@ import NewUserView from '@/views/NewUserView.vue'
 import UserProfileView from '@/views/UserProfileView.vue'
 import LogoutView from '@/views/LogoutView.vue'
 import OrderView from '@/views/OrderView.vue'
+import AddressView from '../components/AddressView.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),

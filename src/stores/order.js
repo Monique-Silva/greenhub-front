@@ -1,7 +1,6 @@
 // src/stores/order.js
 import { defineStore } from 'pinia';
 import axios from 'axios';
-import { useUserStore } from './user';
 
 export const useOrderStore = defineStore('order', {
     state: () => ({
@@ -10,7 +9,9 @@ export const useOrderStore = defineStore('order', {
         orderDetails: null,
         error: null,
     }),
+
     actions: {
+
         async submitOrder(cart) {
             try {
                 const response = await axios.post('/orders', {

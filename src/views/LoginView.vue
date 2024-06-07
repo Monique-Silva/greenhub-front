@@ -60,7 +60,7 @@ export default {
                                                     class="mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-dark-3 transition duration-150 ease-in-out hover:shadow-dark-2 focus:shadow-dark-2 focus:outline-none focus:ring-0 active:shadow-dark-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
                                                     type="button" v-on:click.prevent="store.login" data-twe-ripple-init
                                                     data-twe-ripple-color="light" style="
-                        background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+                        background: linear-gradient(to right, #4D530D, #CE8D0E);
                       ">
                                                     Log in
                                                 </button>
@@ -86,7 +86,7 @@ export default {
 
                             <!-- Right column container with background and description-->
                             <div class="flex items-center rounded-b-lg lg:w-6/12 lg:rounded-e-lg lg:rounded-bl-none"
-                                style="background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)">
+                                style="background: linear-gradient(to right, #4D530D, #CE8D0E);">
                                 <div class="px-4 py-6 text-white md:mx-6 md:p-12">
                                     <h4 class="mb-6 text-xl font-semibold">
                                         We are more than just a company

@@ -22,7 +22,7 @@ export default {
 </script>
 
 <template>
-  <div v-if="item" class="card w-96 bg-base-100 shadow-xl">
+  <div v-if="item" class="card w-96 bg-white shadow-xl">
     <RouterLink :to="'/product/' + item.id">
       <figure><img :src="item.image" alt="product image"></figure>
     </RouterLink>
@@ -31,7 +31,7 @@ export default {
       <h2 class="card-title">{{ item.name }}</h2>
       <p>{{ item.description }}</p>
       <div class="card-actions justify-end">
-        <h1>{{ item.price }}</h1>
+        <h1>{{ item.price }} €</h1>
         <button @click="this.cartStore.addProductToCart(item)" class="btn btn-primary">AJOUTER</button>
       </div>
     </div>

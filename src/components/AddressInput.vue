@@ -1,31 +1,32 @@
 <script>
-import { ref, computed } from 'vue';
-import { useUserStore } from '@/stores/user';
+import { defineComponent } from 'vue';
+import { useAddressStore } from '@/stores/address';
 
-export default {
-  setup() {
-    const userStore = useUserStore();
-    const query = ref('');
-
-    const fetchSuggestions = () => {
-      userStore.fetchAddressSuggestions(query.value);
-    };
-
-    const selectSuggestion = (suggestion) => {
-      userStore.selectAddress(suggestion);
-      query.value = `${suggestion.number}, ${suggestion.road}, ${suggestion.city}, ${suggestion.postalCode}, ${suggestion.country}`;
-    };
-
-    const suggestions = computed(() => userStore.suggestions);
-
+export default defineComponent({
+  name: 'AddressInput',
+  data() {
     return {
-      query,
-      suggestions,
-      fetchSuggestions,
-      selectSuggestion,
+      query: '',
     };
   },
-};
+  computed: {
+    suggestions() {
+      return this.addressStore.suggestions;
+    },
+  },
+  methods: {
+    fetchSuggestions() {
+      this.addressStore.fetchAddressSuggestions(this.query);
+    },
+    selectSuggestion(suggestion) {
+      this.addressStore.selectAddress(suggestion);
+      this.query = `${suggestion.number}, ${suggestion.road}, ${suggestion.city}, ${suggestion.postal_code}, ${suggestion.country}`;
+    },
+  },
+  created() {
+    this.addressStore = useAddressStore();
+  },
+});
 </script>
 
 <template>
@@ -33,7 +34,7 @@ export default {
     <input type="text" v-model="query" @input="fetchSuggestions" placeholder="Entrez votre adresse" />
     <ul v-if="suggestions.length">
       <li v-for="suggestion in suggestions" :key="suggestion.id" @click="selectSuggestion(suggestion)">
-        {{ suggestion.number }}, {{ suggestion.road }}, {{ suggestion.city }}, {{ suggestion.postalCode }}, {{ suggestion.country }}
+        {{ suggestion.number }}, {{ suggestion.road }}, {{ suggestion.city }}, {{ suggestion.postal_code }}, {{ suggestion.country }}
       </li>
     </ul>
   </div>

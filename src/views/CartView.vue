@@ -1,66 +1,54 @@
 <script>
-import Breadcrumb from '../components/Breadcrumb.vue'
-import { useCartStore } from '@/stores/cart'
-import { onMounted, computed } from 'vue';
+import Breadcrumb from '../components/Breadcrumb.vue';
+import { useCartStore } from '@/stores/cart';
 import { useUserStore } from '@/stores/user';
+import { computed } from 'vue';
 
 export default {
+    components: {
+        Breadcrumb
+    },
     data() {
-        // Référence au store Pinia
-        const userStore = useUserStore();
         return {
-            userStore
+            userStore: useUserStore(),
+            cartStore: useCartStore()
+        };
+    },
+    created() {
+        this.cartStore.loadCartFromLocalStorage();
+    },
+    computed: {
+        cart() {
+            return this.cartStore.cart;
+        },
+        cartSubtotal() {
+            return this.cartStore.cartSubtotal;
+        },
+        cartTaxes() {
+            return this.cartStore.cartTaxes;
+        },
+        cartTotal() {
+            return this.cartStore.cartTotal;
+        },
+        deliveryPrice() {
+            return this.cartStore.deliveryPrice;
+        },
+        removeFromCart() {
+            return this.cartStore.removeProductFromCart;
         }
     },
-
-    components: {
-        Breadcrumb,
-    },
-
-    setup() {
-
-        const cartStore = useCartStore();
-
-        // Load cart from local storage on component mount
-        cartStore.loadCartFromLocalStorage();
-
-        const incrementQuantity = (itemId) => {
-            cartStore.incrementProductQuantity(itemId);
-        };
-
-        const decrementQuantity = (itemId) => {
-            cartStore.decrementProductQuantity(itemId);
-        };
-
-        const clearCart = () => {
-            cartStore.clearCart();
-        };
-
-        onMounted(() => {
-            cartStore.loadCartFromLocalStorage();
-        });
-
-        const cart = computed(() => cartStore.cart);
-        const cartSubtotal = computed(() => cartStore.cartSubtotal);
-        const cartTaxes = computed(() => cartStore.cartTaxes);
-        const cartTotal = computed(() => cartStore.cartTotal);
-        const deliveryPrice = computed(() => cartStore.deliveryPrice);
-        const removeFromCart = computed(() => cartStore.removeProductFromCart);
-
-
-        return {
-            cart,
-            cartSubtotal,
-            cartTaxes,
-            cartTotal,
-            deliveryPrice,
-            removeFromCart,
-            incrementQuantity,
-            decrementQuantity,
-            clearCart,
-        };
-    },
-}
+    methods: {
+        incrementQuantity(itemId) {
+            this.cartStore.incrementProductQuantity(itemId);
+        },
+        decrementQuantity(itemId) {
+            this.cartStore.decrementProductQuantity(itemId);
+        },
+        clearCart() {
+            this.cartStore.clearCart();
+        }
+    }
+};
 </script>
 
 <template>
@@ -79,7 +67,7 @@ export default {
             </div>
             <div v-else class="flex flex-wrap justify-between w-full">
                 <div class="w-full md:w-3/4 bg-white rounded-lg shadow-md p-6 mb-4 product-cart-container">
-                    <h2 class="text-lg font-semibold mb-4 ">Mes produits</h2>
+                    <h2 class="text-lg font-semibold mb-4">Mes produits</h2>
                     <table class="w-full">
                         <tbody>
                             <tr v-for="item in cart" :key="item.id" class="border-b">
@@ -126,15 +114,17 @@ export default {
                         <span class="font-semibold">{{ cartTotal.toFixed(2) }} €</span>
                     </div>
                     <div class="w-full">
-                        <div v-if="!this.userStore.is_logged_in">
+                        <div v-if="!userStore.is_logged_in">
                             <router-link to="/login"
-                                class="justify-center bg-primary text-white font-bold py-2 px-4 rounded-lg mt-4">Valider
-                                mon panier</router-link>
+                                class="justify-center bg-primary text-white font-bold py-2 px-4 rounded-lg mt-4">
+                                Valider mon panier
+                            </router-link>
                         </div>
                         <div v-else>
                             <router-link to="/order"
-                                class="justify-center bg-primary text-white font-bold py-2 px-4 rounded-lg mt-4">Valider
-                                mon panier</router-link>
+                                class="justify-center bg-primary text-white font-bold py-2 px-4 rounded-lg mt-4">
+                                Valider mon panier
+                            </router-link>
                         </div>
                     </div>
                 </div>
@@ -158,27 +148,8 @@ export default {
     border-color: black;
     border-bottom: solid 1px;
 }
-</style>
 
-
-
-<style scoped>
 h3 {
     font-size: 20px;
-}
-
-.product-cart-container {
-    max-width: 70%;
-}
-
-.product-cart-recap {
-    max-width: 25%;
-}
-
-.product-cart-card {
-    margin: 50px;
-    padding: 10px;
-    border-color: black;
-    border-bottom: solid 1px;
 }
 </style>

@@ -1,40 +1,32 @@
 <script>
 import { useUserStore } from '@/stores/user';
+import { useAddressStore } from '@/stores/address';
 import AddressInput from '@/components/AddressInput.vue';
 import { useCartStore } from '@/stores/cart';
 
 export default {
-  data() {
-    // Référence au store Pinia
-    const cartStore = useCartStore();
-    return {
-      cartStore
-    }
-  },
-
   components: {
     AddressInput,
   },
-  setup() {
-    const userStore = useUserStore();
-
-    const register = async () => {
+  data() {
+    return {
+      cartStore: useCartStore(),
+      addressStore: useAddressStore(),
+      userStore: useUserStore(),
+    };
+  },
+  methods: {
+    async register() {
       try {
-        const response = await userStore.registerNewClient();
+        const response = await this.userStore.registerNewClient();
         console.log('Utilisateur enregistré:', response.data);
       } catch (error) {
         console.error('Erreur lors de l\'enregistrement:', error);
       }
-    };
-
-    return {
-      userStore,
-      register,
-    };
+    },
   },
 };
 </script>
-
 
 <template>
   <form @submit.prevent="register" id="register" name="register">
